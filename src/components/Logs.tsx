@@ -1,21 +1,38 @@
 import React, { Component } from 'react';
 
-export interface LogsProps {
-    lines: string[]
+import './Logs.css';
+
+export interface Line {
+    content: string,
+    type: string
 }
 
-export default class Logs extends Component<LogsProps> {
+export interface LogsPros {
+     lines: Array<Line>
+}
 
-    render() {
-        return(
-            <div>
-                {this.props.lines.map((line, index) => {
-                    return <div key={index}>{line}</div>
-                })
+export default class Logs extends Component<LogsPros> {
+  // see https://medium.com/@martin_hotell/react-refs-with-typescript-a32d56c4d315
+  private inputRef = React.createRef<HTMLDivElement>();
 
-            }
-            </div>
-        );
-    }
+  componentDidUpdate() {
+    // @ts-ignore
+    this.inputRef.current.scrollTop = this.inputRef.current.scrollHeight;
+  }
 
+  render() {
+    return (
+      <div className="logs">
+        <div className="logs-header">
+          <span>Output logs:</span>
+          <input type="button" value="clear" onClick={() => {}} />
+        </div>
+        <div className="logs-body" ref={this.inputRef}>
+          {this.props.lines && this.props.lines.map(({ content, type }, index) =>
+            <div key={index} className={type}>{content}</div> 
+          )}
+        </div>
+      </div>
+    )
+  }
 }

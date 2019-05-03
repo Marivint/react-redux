@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Logs from './components/Logs';
 import './App.css';
 import Logs from './components/Logs'
 
@@ -8,7 +9,7 @@ export default class App extends Component {
       <div className="App">
         <header className="App-header">
         </header>
-        <Logs lines={['line1', 'line2']}/>
+        <Logs lines={[]} />
       </div>
     );
   }
