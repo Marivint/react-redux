@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import Logs from './components/Logs';
 import './App.css';
-import Logs from './components/Logs'
 
 export default class App extends Component {
   render() {
